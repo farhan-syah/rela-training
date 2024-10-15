@@ -13,7 +13,7 @@ services:
       - 3001:3000
     image: farhansyah/rela-frontend
     environment:
-      BACKEND: http://backend:3000s
+      BACKEND: http://backend:3000
     networks:
       - rela
 networks:
