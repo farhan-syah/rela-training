@@ -1,0 +1,13 @@
+services:
+  backend:
+    container_name: rela-backend
+    ports:
+      - 3000:3000
+    image: farhansyah/rela-backend
+  frontend:
+    container_name: rela-frontend
+    ports:
+      - 3001:3000
+    image: farhansyah/rela-frontend
+    environment:
+      - BACKEND=http://backend:3000
