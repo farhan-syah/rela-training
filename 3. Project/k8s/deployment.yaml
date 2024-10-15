@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rela-backend
+  namespace: rela
+spec:
+  selector:
+    matchLabels:
+      app: rela-backend
+  template:
+    metadata:
+      labels:
+        app: rela-backend
+    spec:
+      containers:
+        - name: rela-backend
+          image: farhansyah/rela-backend
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rela-frontend
+  namespace: rela
+spec:
+  selector:
+    matchLabels:
+      app: rela-frontend
+  template:
+    metadata:
+      labels:
+        app: rela-frontend
+    spec:
+      containers:
+        - name: rela-frontend
+          image: farhansyah/rela-frontend
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
