@@ -4,6 +4,7 @@ metadata:
   name: rela-backend
   namespace: rela
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: rela-backend
@@ -17,7 +18,7 @@ spec:
           image: farhansyah/rela-backend
           resources:
             limits:
-              memory: "128Mi"
+              memory: "256Mi"
               cpu: "500m"
           ports:
             - containerPort: 3000
@@ -40,6 +41,7 @@ metadata:
   name: rela-frontend
   namespace: rela
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: rela-frontend
@@ -53,7 +55,7 @@ spec:
           image: farhansyah/rela-frontend
           resources:
             limits:
-              memory: "128Mi"
+              memory: "256Mi"
               cpu: "500m"
           ports:
             - containerPort: 3000
