@@ -1,0 +1,40 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+  namespace: gateway
+  annotations: # This is the name of the ClusterIssuer created in the previous step
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  gatewayClassName: nginx
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: backend-https
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      hostname: backend.rela.farhansyah.com
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: backend-tls
+    - name: frontend-https
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      hostname: frontend.rela.farhansyah.com
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: frontend-tls
