@@ -38,3 +38,15 @@ spec:
         certificateRefs:
           - kind: Secret
             name: frontend-tls
+    - name: wordpress
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      hostname: wp.rela.farhansyah.com
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: wp-tls
