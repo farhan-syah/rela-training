@@ -8,14 +8,21 @@ export const options = {
     // ramping: {
     //   executor: "ramping-vus",
     //   startVUs: 0,
-    //   stages: [{ duration: "10s", target: 20000 }],
+    //   stages: [{ duration: "10s", target: 5000 }],
     //   gracefulStop: "5s",
     // },
-    shared: {
-      executor: "shared-iterations",
-      vus: 100,
-      iterations: 1500000,
-      maxDuration: "10s",
+    // shared: {
+    //   executor: "shared-iterations",
+    //   vus: 300,
+    //   iterations: 1500000,
+    //   maxDuration: "10s",
+    //   gracefulStop: "5s",
+    // },
+    vu: {
+      executor: "per-vu-iterations",
+      vus: 5000,
+      iterations: 1000,
+      maxDuration: "20s",
       gracefulStop: "5s",
     },
   },
@@ -23,7 +30,7 @@ export const options = {
 const myCounter = new Counter("my_counter", false);
 
 export default function () {
-  let res = http.get("http://localhost:3000");
+  let res = http.get("http://backend.rela.farhansyah.com");
 
   let checkStatus = check(res, {
     "status code MUST be 200": (res) => res.status == 200,
