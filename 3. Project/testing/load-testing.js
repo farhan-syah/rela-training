@@ -20,7 +20,7 @@ export const options = {
     // },
     vu: {
       executor: "per-vu-iterations",
-      vus: 5000,
+      vus: 100,
       iterations: 1000,
       maxDuration: "20s",
       gracefulStop: "5s",
@@ -30,7 +30,8 @@ export const options = {
 const myCounter = new Counter("my_counter", false);
 
 export default function () {
-  let res = http.get("http://backend.rela.farhansyah.com");
+  let res = http.get("https://wp.rela.farhansyah.com");
+  // let res = http.get("http://backend.rela.farhansyah.com");
 
   let checkStatus = check(res, {
     "status code MUST be 200": (res) => res.status == 200,
